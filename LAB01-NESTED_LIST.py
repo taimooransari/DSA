@@ -38,3 +38,42 @@ def matrix_multiplication(A,B):
                     val += A[x][i]*B[i][y]
                 C[x].append(val)
         return C
+
+# =================================================================================================
+# Q4 - Image Sharpening
+
+
+def sharpen_image(A):
+    C = list()
+    row = len(A)-1
+    col = len(A[0])-1
+    for x in range(row+1):
+        C.append([])
+        for y in range(col+1):
+            C[x].append(0)
+            top,bottom,right,left,div=0,0,0,0,0
+            if(x > 0 and x<row):
+                bottom = A[x+1][y]
+                top = A[x-1][y]
+                div+=2
+            elif(x==0):
+                bottom = A[x+1][y]
+                div+=1
+            elif(x==row):
+                top = A[x-1][y]
+                div+=1
+
+            if(y > 0 and y<col):
+                right = A[x][y+1]
+                left = A[x][y-1]
+                div+=2
+            elif(y==0):
+                right = A[x][y+1]
+                div+=1
+            elif(y==col):
+                left = A[x][y-1]
+                div+=1
+            val=2*abs(A[x][y] -(top+bottom+right+left)/div)
+            C[x][y]= round(val,2)
+    return C
+
