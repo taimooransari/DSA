@@ -56,3 +56,33 @@ def binary_search_iterative_modified(lst,item):
 print(binary_search_iterative_modified(lst, item))
 
 # =====================================================================================
+
+# Q3 - Binary Search Recursive
+# Return index of item or -1 if it doesn't exist.
+
+import ast
+lst = input()
+lst = ast.literal_eval(lst)
+item = int(input())
+low = int(input())
+high = int(input())
+
+def binary_search_recursive(lst,item,low,high):
+    if(low<=high):
+        mid=(low+high)//2
+        if(lst[mid]==item):
+            return mid
+        elif(lst[mid]>item):
+            high = mid-1
+        elif(lst[mid]<item):
+            low = mid+1
+        index = binary_search_recursive(lst,item,low,high)
+        return index
+    else:
+        return -1
+    
+
+print(binary_search_recursive(lst, item, low, high))
+
+# =====================================================================================
+
