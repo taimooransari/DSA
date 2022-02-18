@@ -159,5 +159,42 @@ print(update_record(student_records, ID, record_title, data))
 
 # =====================================================================================
 
+# Q6 - Binary Search Application
+# Find endpoints with the given length, return -1 if doesnot exists
+
+import ast
+points_list = input()
+points_list = ast.literal_eval(points_list)
+length = float(input())
+
+def check_length(p1,p2):
+    c_y = (p2[1]-p1[1])**2
+    c_x = (p2[0]-p1[0])**2
+    length = round((c_x + c_y)**0.5,2)
+    return length
+
+
+def length_of_line(points_list,length):
+    low=0
+    high=len(points_list)-1
+    while(low<=high):
+        mid=(low+high)//2 
+        p_l = check_length(points_list[mid][0],points_list[mid][1])
+        if(p_l==length):
+            return mid
+        elif(p_l>length):
+            high = mid-1
+        elif(p_l<length):
+            low = mid+1
+    return -1
+        
+        
+    
+    
+
+print(length_of_line(points_list, length))
+# =====================================================================================
+
+# =====================================================================================
 
 
