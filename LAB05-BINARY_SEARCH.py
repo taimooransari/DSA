@@ -160,7 +160,7 @@ print(update_record(student_records, ID, record_title, data))
 # =====================================================================================
 
 # Q6 - Binary Search Application
-# Find endpoints with the given length, return -1 if doesnot exists
+# Find endpoints with the given length, return -1 if doesnot exist
 
 import ast
 points_list = input()
@@ -195,6 +195,58 @@ def length_of_line(points_list,length):
 print(length_of_line(points_list, length))
 # =====================================================================================
 
+# Q6 - Binary Search Application
+# Find list of indexes where the item exists, return [] if doesnot exist
+
+import ast
+lst = input()
+lst = ast.literal_eval(lst)
+item = int(input())
+def binary_search_iterative(lst,item):
+    low=0
+    high=len(lst)-1
+    indexes=[]    
+    while(high>=low):
+        mid=(low+high)//2
+        if(lst[mid]==item):
+            return mid
+        elif(lst[mid]>item):
+            high = mid-1
+        elif(lst[mid]<item):
+            low = mid+1
+    return -1
+  
+    
+def finding_multiple(lst,item):
+    indexes=[]
+    index = binary_search_iterative(lst,item)
+    if(index!=-1):
+        indexes.append(index)
+    else:
+        return indexes
+    if(index<len(lst)-1):
+        for x in range(index+1,len(lst)):
+            if(lst[x]==item):
+                indexes.append(x)
+            else:
+                break
+            
+    if(index>0):
+        for x in range(index-1,-1,-1):
+            if(lst[x]==item):
+                indexes.append(x)
+            else:
+                break
+    indexes.sort()
+    return indexes
+            
+    
+        
+    
+    
+    
+
+print(finding_multiple(lst, item))
 # =====================================================================================
 
 
