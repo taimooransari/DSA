@@ -43,8 +43,8 @@ N = [
     [0,0,0,1]
 ]
 
-print(extractFriendsCircle(M))
-print(extractFriendsCircle(N))
+# print(extractFriendsCircle(M))
+# print(extractFriendsCircle(N))
 
 
 # QUIZ 2 minimum total cost between c1 and c2 avoiding redzon cities
@@ -86,7 +86,7 @@ def returnMinimumNodesPath(source,target1,target2,dist):
 
 
 
-def getShortestPathModified(graph,source,target,redzone):
+def minimumCostFromC1toC2(graph,source,target,redzone):
     inf = float('inf')
     dist={
         source: (source,0)
@@ -135,4 +135,40 @@ G = {
     } 
 
 
-print(getShortestPathModified(G,'A','F',['D','E']))
+# print(minimumCostFromC1toC2(G,'A','F',['D','E']))
+
+
+# QUIZ 3  total cost between c1 and c2 avoiding redzone cities
+
+def getFriends(G,node):
+    lst=[]
+    for x,y in G[node]:
+        lst.append(x)
+    return lst
+
+
+def flightFromC1toC2(network, c1, c2,redZone,visited=[]):
+    
+    path = [c1]
+    friends = getFriends(network,c1)
+    if(c2 in friends):
+        path.append(c2)
+        return path
+    else:
+        for x in friends:
+            if(x not in visited and x not in redZone):
+                next = flightFromC1toC2(network,x,c2,redZone,visited+path)
+                if(next != None):
+                    return path+next 
+        
+
+G = { 
+        'A': [('B', 7), ('E', 6), ('D', 2)], 
+        'B': [('A', 7), ('C', 3)], 
+        'C': [('B', 3), ('D', 2), ('G', 2)], 
+        'D': [('A', 2), ('C', 2), ('F', 8)], 
+        'E': [('A', 6), ('F', 9)], 
+        'F': [('D', 8), ('E', 9), ('G', 4)], 
+        'G': [('C', 2), ('F', 4)] 
+    } 
+print(flightFromC1toC2(G,'A','F',['D']))
