@@ -43,8 +43,8 @@ N = [
     [0,0,0,1]
 ]
 
-# print(extractFriendsCircle(M))
-# print(extractFriendsCircle(N))
+print(extractFriendsCircle(M))
+print(extractFriendsCircle(N))
 
 
 # QUIZ 2 minimum total cost between c1 and c2 avoiding redzon cities
