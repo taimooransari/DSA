@@ -344,3 +344,4 @@ graph = addEdges(graph,E)
 
 a = MSTPrims(graph,1)
 print(a)
+
